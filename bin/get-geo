@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+
+<?php
+
+require dirname(__DIR__) . '/vendor/autoload.php';
+
+$ip = null;
+if (array_key_exists(1, $argv)) {
+    $ip = $argv[1];
+}
+
+$geoIpService = new \Hexlet\GeoIpServices\IpApi($ip);
+$geo = new \Hexlet\Geolocation($geoIpService);
+
+$result = $geo->identify();
+
+$climate = new \League\CLImate\CLImate();
+$climate->json(json_decode($result, true));

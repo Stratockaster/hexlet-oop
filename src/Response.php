@@ -24,9 +24,8 @@ class Response
         $response = new self();
 
         foreach (json_decode($data, true) as $propName => $propValue) {
-            $setterName = 'set' . $propName;
-            if (method_exists(self::class, $setterName)) {
-                $response->$setterName($propValue);
+            if (property_exists(self::class, $propName)) {
+                $response->$propName = $propValue;
             }
         }
 
@@ -38,19 +37,9 @@ class Response
         return $this->as;
     }
 
-    public function setAs($as): void
-    {
-        $this->as = $as;
-    }
-
     public function getCity()
     {
         return $this->city;
-    }
-
-    public function setCity($city): void
-    {
-        $this->city = $city;
     }
 
     public function getCountry()
@@ -58,19 +47,9 @@ class Response
         return $this->country;
     }
 
-    public function setCountry($country): void
-    {
-        $this->country = $country;
-    }
-
     public function getCountryCode()
     {
         return $this->countryCode;
-    }
-
-    public function setCountryCode($countryCode): void
-    {
-        $this->countryCode = $countryCode;
     }
 
     public function getIsp()
@@ -78,19 +57,9 @@ class Response
         return $this->isp;
     }
 
-    public function setIsp($isp): void
-    {
-        $this->isp = $isp;
-    }
-
     public function getLat()
     {
         return $this->lat;
-    }
-
-    public function setLat($lat): void
-    {
-        $this->lat = $lat;
     }
 
     public function getLon()
@@ -98,19 +67,9 @@ class Response
         return $this->lon;
     }
 
-    public function setLon($lon): void
-    {
-        $this->lon = $lon;
-    }
-
     public function getLong()
     {
         return $this->long;
-    }
-
-    public function setLong($long): void
-    {
-        $this->long = $long;
     }
 
     public function getQuery()
@@ -118,19 +77,9 @@ class Response
         return $this->query;
     }
 
-    public function setQuery($query): void
-    {
-        $this->query = $query;
-    }
-
     public function getRegion()
     {
         return $this->region;
-    }
-
-    public function setRegion($region): void
-    {
-        $this->region = $region;
     }
 
     public function getRegionName()
@@ -138,19 +87,9 @@ class Response
         return $this->regionName;
     }
 
-    public function setRegionName($regionName): void
-    {
-        $this->regionName = $regionName;
-    }
-
     public function getStatus()
     {
         return $this->status;
-    }
-
-    public function setStatus($status): void
-    {
-        $this->status = $status;
     }
 
     public function getTimezone()
@@ -158,19 +97,9 @@ class Response
         return $this->timezone;
     }
 
-    public function setTimezone($timezone): void
-    {
-        $this->timezone = $timezone;
-    }
-
     public function getZip()
     {
         return $this->zip;
-    }
-
-    public function setZip($zip): void
-    {
-        $this->zip = $zip;
     }
 
     public function toArray()

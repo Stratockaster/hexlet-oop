@@ -23,8 +23,7 @@ class Response
     {
         $response = new self();
 
-        foreach (json_decode($data, true) as $propName => $propValue)
-        {
+        foreach (json_decode($data, true) as $propName => $propValue) {
             $setterName = 'set' . $propName;
             if (method_exists(self::class, $setterName)) {
                 $response->$setterName($propValue);

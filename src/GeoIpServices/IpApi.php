@@ -8,16 +8,14 @@ class IpApi implements GeoIpService
 {
     private const URL = "http://ip-api.com/json/";
 
-    public function getGeo($ip = null)
+    public function getGeo($ip = null): string
     {
         $url = self::URL;
-        if ($ip) {
-            $url .= $ip;
-        }
+        $ip && $url .= $ip;
 
         $client = new Client([
             'base_uri' => $url,
-            'timeout'  => 2.0,
+            'timeout' => 2.0,
         ]);
 
         $response = $client->request("GET");

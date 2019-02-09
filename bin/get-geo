@@ -2,6 +2,10 @@
 
 <?php
 
+use Hexlet\GeoIpServices\IpApi;
+use Hexlet\Geolocation;
+use League\CLImate\CLImate;
+
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 $ip = null;
@@ -9,10 +13,10 @@ if (array_key_exists(1, $argv)) {
     $ip = $argv[1];
 }
 
-$geoIpService = new \Hexlet\GeoIpServices\IpApi();
-$geo = new \Hexlet\Geolocation($geoIpService);
+$geoIpService = new IpApi();
+$geo = new Geolocation($geoIpService);
 
 $result = $geo->identify($ip);
 
-$climate = new \League\CLImate\CLImate();
+$climate = new CLImate();
 $climate->json($result->toArray());

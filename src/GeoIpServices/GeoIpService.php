@@ -4,5 +4,5 @@ namespace Hexlet\GeoIpServices;
 
 interface GeoIpService
 {
-    public function getGeo($id = null);
+    public function getGeo($id = null): string;
 }

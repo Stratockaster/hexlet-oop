@@ -2,7 +2,6 @@
 
 namespace Hexlet;
 
-use Hexlet\GeoIpServices\DummyIp;
 use PHPUnit\Framework\TestCase;
 
 class GeolocationTest extends TestCase
@@ -19,7 +18,7 @@ class GeolocationTest extends TestCase
 
     public function testIdentifyWithIp()
     {
-        $ip = '8.8.8.8';
+        $ip = DummyIp::GOOGLE_IP;
         $geoIpService = new DummyIp();
         $geo = new Geolocation($geoIpService);
 

@@ -1,6 +1,8 @@
 <?php
 
-namespace Hexlet\GeoIpServices;
+namespace Hexlet;
+
+use Hexlet\GeoIpServices\GeoIpService;
 
 class DummyIp implements GeoIpService
 {

@@ -28,7 +28,7 @@ class IpApi implements GeoIpService
             $url .= $ip;
         }
 
-        $response = $this->client->request("GET", $url);
+        $response = $this->client->get($url);
 
         return $response->getBody()->getContents();
     }

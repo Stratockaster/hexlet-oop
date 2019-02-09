@@ -2,30 +2,26 @@
 
 namespace Hexlet\GeoIpServices;
 
+use GuzzleHttp\Client;
+
 class IpApi implements GeoIpService
 {
     private const URL = "http://ip-api.com/json/";
 
-    private $url;
-
-    public function __construct($ip = null)
+    public function getGeo($ip = null)
     {
         $url = self::URL;
         if ($ip) {
             $url .= $ip;
         }
 
-        $this->url = $url;
-    }
+        $client = new Client([
+            'base_uri' => $url,
+            'timeout'  => 2.0,
+        ]);
 
-    public function getGeo()
-    {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($ch);
-        curl_close($ch);
+        $response = $client->request("GET");
 
-        return $output;
+        return $response->getBody()->getContents();
     }
 }

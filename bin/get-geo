@@ -9,10 +9,10 @@ if (array_key_exists(1, $argv)) {
     $ip = $argv[1];
 }
 
-$geoIpService = new \Hexlet\GeoIpServices\IpApi($ip);
+$geoIpService = new \Hexlet\GeoIpServices\IpApi();
 $geo = new \Hexlet\Geolocation($geoIpService);
 
-$result = $geo->identify();
+$result = $geo->identify($ip);
 
 $climate = new \League\CLImate\CLImate();
-$climate->json(json_decode($result, true));
+$climate->json($result->toArray());

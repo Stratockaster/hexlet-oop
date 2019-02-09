@@ -13,8 +13,12 @@ class Geolocation
         $this->geoIpService = $geoIpService;
     }
 
-    public function identify()
+    public function identify($ip = null): Response
     {
-        return $this->geoIpService->getGeo();
+        $data = $this->geoIpService->getGeo($ip);
+
+        $response = Response::createFrom($data);
+
+        return $response;
     }
 }
